@@ -1,46 +1,37 @@
 # DBMS Laboratory Manual Submission
 
-## 🎓 Course: 19CS404 Database Management System and its Applications  
-## 🧑‍🏫 Instructor: Ms. G Abinaya 
+# AIM:
+   Write a SQL query to find the salespeople who had more than one customer, returning salesman_id and name.
 
-![image](https://github.com/user-attachments/assets/7e6f9751-b530-4526-9a3d-8e322e3b2e6d)
+# THEORY:
 
-### 📝 Instructions for Students
+JOIN: Combines rows from two or more tables based on a related column.
 
-1. Fork this repository to your GitHub profile.
-2. For each experiment:
-   SQL queries based on questions generated randomly from Moodle.
-   - Complete the question on Moodle.
-   - Each experiment folder contains **two Markdown files**
-     1. `README.md`
+GROUP BY: Groups rows that have the same values into summary rows.
 
-        This file contains:
-         - 🎯 **Aim**
-         - 📚 **Theory**
-         - 📝 **Result**
-        
-        You **do not need to edit** this file unless instructed.
-      3. `output.md`
+HAVING: Filters groups based on a condition (unlike WHERE which filters rows).
 
-         You **must update this file** with your answers and outputs.
-         For each of the 10 Moodle-generated questions:
-         - Paste the **question**
-         - Write the **SQL query** inside the code block
-         - Paste a **screenshot or terminal output** below it
-3. Commit and push your changes.
-4. Create a pull request to the original repository
+COUNT(): Returns the number of input rows matching a condition.
 
-### ✅ Experiments List
+We will:
 
-| Exp No | Title                          | Module Based? |
-|--------|--------------------------------|---------------|
-| 1      | ER Diagram                     | No            |
-| 2      | DDL Commands                   | Yes           |
-| 3      | DML Commands                   | Yes           |
-| 4      | Aggregate, GROUP BY, HAVING   | Yes           |
-| 5      | Subqueries and Views          | Yes           |
-| 6      | Joins                         | Yes           |
-| 7      | Pl/sql                        | No            |
-| 8      | Procedures, Functions         | No            |
-| 9      | Cursors, Exception Handling   | No            |
-| 10     | Triggers                      | No            |
+Join the salesman and customer tables using salesman_id.
+
+Group the result by salesman_id and name.
+
+Use HAVING COUNT(*) > 1 to find salespeople with more than one customer.
+
+# SQL PROGRAM
+```
+SELECT s.salesman_id, s.name
+FROM salesman s
+JOIN customer c ON s.salesman_id = c.salesman_id
+GROUP BY s.salesman_id, s.name
+HAVING COUNT(DISTINCT c.customer_id) > 1;
+```
+## OUTPUT:
+![image](https://github.com/user-attachments/assets/3f452719-fd8d-4b76-aba1-452bca75db3f)
+
+# RESULT:
+These are the salespeople who are associated with more than one customer in the customer table.
+Let me know if you want to see the sample data that leads to this result or need help generating test data.
